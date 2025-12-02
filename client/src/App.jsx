@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import Admin from './pages/Admin';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
+import Products from './pages/Products';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <main className="container mx-auto px-7 pb-10 flex-grow">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/products" element={<Products />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/signup" element={<Signup />} />
                         <Route path="/admin" element={<Admin />} />

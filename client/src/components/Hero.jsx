@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Hero() {
     return (
@@ -9,14 +10,18 @@ export default function Hero() {
                         SYNE.ART
                     </h1>
                     <h2 className="text-lg font-gray-200 font-serif tracking-widest mb-1 relative -top-30 left-15 text-primary">design to define</h2>
-                    
+
 
                     <div className="text-2xl leading-relaxed mb-10 text-gray-800 font-large">
                         Crafting Rooms as <br />
-                       Unique as You.
+                        Unique as You.
                     </div>
 
-                   
+                    <Link to="/products">
+                        <button className="px-8 py-3 bg-primary text-white font-semibold rounded hover:bg-opacity-90 transition-all shadow-lg">
+                            View Products
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
