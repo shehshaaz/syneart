@@ -7,6 +7,6 @@
         "build": "npm run install-client && npm run install-server && cd client && npm run build"
     },
     "engines": {
-        "node": "18.x"
+        "node": "20.x"
     }
 }
