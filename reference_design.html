@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>IMAN INTERIORS — Demo</title>
+<style>
+  /* ===== Reset & base ===== */
+  :root{
+    --bg: #f7fafb;
+    --card: #ffffff;
+    --muted: #6b7280;
+    --accent: #06b6d4; /* teal-ish */
+    --accent-dark: #0891b2;
+    --shadow: 0 6px 18px rgba(13,24,35,0.08);
+    --radius: 12px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:#0f172a}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ===== Layout container ===== */
+  .container{max-width:1100px;margin:0 auto;padding:28px;}
+
+  /* ===== Navbar ===== */
+  header{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.6));backdrop-filter: blur(6px);position:sticky;top:0;z-index:60;box-shadow:0 1px 0 rgba(0,0,0,0.04)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:0.4px}
+  .logo {
+    width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;
+    box-shadow:var(--shadow)
+  }
+  nav a{margin-left:18px;color:var(--muted);font-weight:600}
+  nav a:hover{color:#0f172a}
+
+ /* ===== Portfolio Hero (Lillian Pratt style) ===== */
+
+.portfolio-hero {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 50px;
+  padding: 60px 40px;
+  background: #f2f2f2; /* light gray like screenshot */
+  align-items: start;
+}
+
+.hero-name {
+  font-size: 50px;
+  font-weight: 900;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 4px;
+  margin: 0 0 30px 0;
+  position: relative;
+  top: -80px;
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.year {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #333;
+}
+
+.right-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.hero-img {
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+
+@font-face {
+  font-family: "Lucidity Expand";
+  src: url("Lucidity-Expand.ttf") format("truetype");
+  font-weight: normal;
+}
+
+/* ===== About Section ===== */
+
+.about-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 60px 40px;
+  background: #f5f5f5; /* matching screenshot background */
+  align-items: center;
+}
+
+.about-left {
+  width: 100%;
+}
+
+.about-img {
+  width: 100%;
+  height: 420px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.about-right {
+  padding-right: 40px;
+}
+
+.about-title {
+  font-family: "Lucidity Expand", sans-serif;
+  font-size: 48px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  margin: 0 0 20px 0;
+}
+
+.about-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  max-width: 420px;
+}
+  /* Contact */
+  .contact{margin-top:34px;background:linear-gradient(180deg,#ffffff, #fbfdff);padding:20px;border-radius:12px;box-shadow:var(--shadow)}
+  .form-grid{display:grid;grid-template-columns:1fr;gap:10px}
+  input, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);font-size:15px}
+  textarea{min-height:140px;resize:vertical}
+
+  /* Footer */
+  footer{margin-top:36px;padding:18px 0;color:var(--muted);font-size:14px;text-align:center}
+
+  /* ===== Booking modal (CSS checkbox) ===== */
+  /* The checkbox that controls the modal is hidden */
+  #book-toggle{display:none}
+  .modal-backdrop{
+    position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.45);z-index:80;
+  }
+  #book-toggle:checked + .modal-backdrop{display:flex}
+  .modal{
+    width:92%;max-width:640px;background:var(--card);border-radius:12px;padding:18px;box-shadow:0 30px 60px rgba(2,6,23,0.32);
+  }
+  .modal h3{margin:0 0 10px 0}
+  .modal .modal-grid{display:grid;gap:10px}
+  .modal .row{display:flex;gap:10px}
+  .modal .row input{flex:1}
+  .modal .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+  .close-btn{background:transparent;border:0;font-weight:700;cursor:pointer;padding:6px 10px;border-radius:8px}
+
+  /* Responsive */
+  @media(min-width:900px){
+    .hero{grid-template-columns:1fr 420px}
+    .hero-media{height:300px}
+    .hero-inner{align-self:center}
+    .testimonials{grid-template-columns:repeat(2,1fr)}
+    .form-grid{grid-template-columns:1fr 1fr}
+  }
+
+  @media(min-width:1200px){
+    h1{font-size:44px}
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">II</div>
+        <div>
+          <div style="font-size:14px;color:var(--muted);font-weight:600">INTERIORS STUDIO</div>
+          <div style="font-size:18px">IMAN INTERIORS</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#contact">Contact</a>
+        <label for="book-toggle" style="margin-left:14px" class="btn">Book Now</label>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" id="home">
+    <!-- Hero -->
+    <section class="hero" style="margin-top:18px">
+     <section class="portfolio-hero">
+
+  <div class="left-section">
+    <h1 class="hero-name">IMAN INTERIORS</h1>
+
+    <div class="subtitle">
+      Interior Designs &<br>
+      Visual Creative
+    </div>
+
+    <div class="year">design to define</div>
+  </div>
+
+  <div class="right-section">
+    <img src="images/Screenshot 2025-11-28 033451.png" class="hero-img" alt="">
+    <img src="images/Screenshot 2025-11-28 033507.png" class="hero-img" alt="">
+  </div>
+
+</section>
+
+
+
+    <!-- get to know -->
+   <section class="about-hero">
+
+    <div class="about-left">
+        <img src="images/image.png" alt="about image" class="about-img">
+    </div>
+
+    <div class="about-right">
+        <h2 class="about-title">GET TO KNOW<br>IMAN</h2>
+
+        <p class="about-text">
+            I'm an interior designer and blogger based in New York
+            City. I am in love with the concept of Zen minimalism and I
+            try to bring this approach to both my life and my work.
+        </p>
+    </div>
+
+</section>
+
+
+    <!-- Contact -->
+    <section id="contact" class="contact" style="margin-top:28px">
+      <h3 style="margin-top:0">Contact & Enquiry</h3>
+      <form onsubmit="event.preventDefault(); alert('Form submitted (demo)')">
+        <div class="form-grid">
+          <input type="text" placeholder="Your name" required />
+          <input type="email" placeholder="Email address" required />
+          <input type="tel" placeholder="Phone (optional)" />
+          <input type="text" placeholder="Project location / city" />
+          <textarea placeholder="Tell us about your project..." required></textarea>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+          <button type="submit" class="btn">Send enquiry</button>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      © <strong>IMAN INTERIORS</strong> · Crafted with care · <span style="color:var(--muted)">Kasaragod, Kerala</span>
+    </footer>
+  </main>
+
+  <!-- ===== Booking modal controlled by a hidden checkbox ===== -->
+  <input id="book-toggle" type="checkbox" />
+  <div class="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <h3 id="modalTitle">Book a Consultation</h3>
+        <label for="book-toggle" class="close-btn">✕</label>
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Booking request sent (demo)'); document.getElementById('book-toggle').checked=false">
+        <div class="modal-grid">
+          <input name="project" placeholder="Project / Package (eg. Living Room)" required />
+          <div class="row">
+            <input name="name" placeholder="Full name" required />
+            <input name="phone" placeholder="Phone" required />
+          </div>
+          <div class="row">
+            <input name="email" type="email" placeholder="Email address" required />
+            <input name="city" placeholder="City" />
+          </div>
+          <textarea name="notes" placeholder="Tell us any details (approx. budget, timeline)"></textarea>
+        </div>
+
+        <div class="actions">
+          <label for="book-toggle" class="close-btn">Cancel</label>
+          <button class="btn" type="submit">Request booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
