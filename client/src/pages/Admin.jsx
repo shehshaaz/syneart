@@ -77,8 +77,8 @@ export default function Admin() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-8 text-primary">Admin Dashboard</h1>
+    <div>
+      <h1 className="text-3xl font-bold mb-8 text-primary">Product Management</h1>
 
       {/* Add/Edit Product Form */}
       <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 mb-10">
@@ -204,5 +204,6 @@ export default function Admin() {
         )}
       </div>
     </div>
+
   );
 }

@@ -24,7 +24,7 @@ export default function Signup() {
 
     return (
         <div className="min-h-[80vh] flex items-center justify-center bg-bg">
-            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+            <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg border border-gray-100" data-aos="zoom-in">
                 <h2 className="text-3xl font-bold text-center mb-8 text-primary">Create Account</h2>
                 {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center">{error}</div>}
                 <form onSubmit={handleSubmit} className="space-y-6">

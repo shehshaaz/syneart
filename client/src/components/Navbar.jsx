@@ -30,120 +30,90 @@ export default function Navbar() {
     };
 
     return (
-        <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
-            <div className="container mx-auto px-7 py-4 flex items-center justify-between">
-                <Link to="/" className="flex items-center gap-3 font-bold tracking-wide" onClick={closeMenu}>
-                    <img
-                        src="/images/logo.png"
-                        alt="SYNE.ART Logo"
-                        className="w-14 h-14 rounded-xl shadow-lg object-cover"
-                    />
-
-                    <div>
-                        <div className="text-lg text-primary">SYNE.ART</div>
-                    </div>
+        <header className="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-primary/5">
+            <div className="container mx-auto px-6 py-6 flex items-center justify-between">
+                {/* Left Side: Logo */}
+                <Link to="/" className="text-2xl font-bold tracking-tighter text-primary z-50 relative">
+                    SYNE.ART
                 </Link>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-6">
-                    <Link to="/" className="text-secondary hover:text-primary font-semibold transition-colors">Home</Link>
-                    <Link to="/cart" className="text-secondary hover:text-primary font-semibold transition-colors">Cart</Link>
-                    <Link to="/wishlist" className="text-secondary hover:text-primary font-semibold transition-colors">Wishlist</Link>
-                    <Link to="/admin" className="text-secondary hover:text-primary font-semibold transition-colors">Admin</Link>
-
-                    {user ? (
-                        <div className="flex items-center gap-4 ml-4">
-                            <span className="text-primary font-semibold">
-                                Hello, {user.name}
-                            </span>
-                            <button
-                                onClick={handleLogout}
-                                className="px-5 py-2 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition-all shadow-md"
-                            >
-                                Logout
-                            </button>
-                        </div>
-                    ) : (
-                        <Link to="/login" className="ml-4 px-5 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition-all shadow-md">
-                            Login
-                        </Link>
-                    )}
+                {/* Center: Navigation Links (Desktop) */}
+                <nav className="hidden lg:flex items-center gap-8 text-sm font-medium tracking-wide text-primary/80">
+                    <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+                    <Link to="/products" className="hover:text-primary transition-colors">Services</Link>
+                    <Link to="/about" className="hover:text-primary transition-colors">About Us</Link>
+                    <Link to="/gallery" className="hover:text-primary transition-colors">Gallery</Link>
+                    <Link to="/contact" className="hover:text-primary transition-colors">Contact Us</Link>
                 </nav>
 
-                {/* Hamburger Button */}
+                {/* Right Side: CTA (Desktop) */}
+                <div className="hidden lg:flex items-center gap-6">
+                    <span className="text-xs font-medium tracking-wider text-primary/70">
+                        Get A Free Quote +917558814397
+                    </span>
+                    <button className="bg-primary text-white text-xs font-bold tracking-widest px-6 py-3 hover:bg-secondary transition-colors uppercase">
+                        Book Now
+                    </button>
+
+                    {/* User/Cart Icons (Optional addition to keep functionality) */}
+                    <Link to="/cart" className="text-sm font-medium tracking-widest text-primary hover:text-secondary transition-colors ml-2">
+                        CART (0)
+                    </Link>
+                </div>
+
+                {/* Mobile Menu Button */}
                 <button
                     onClick={toggleMenu}
-                    className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none group"
-                    aria-label="Toggle menu"
+                    className="lg:hidden z-50 relative flex flex-col gap-[5px] w-6 group"
                 >
-                    <span
-                        className={`w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ease-in-out ${isOpen ? 'rotate-45 translate-y-2' : ''
-                            }`}
-                    ></span>
-                    <span
-                        className={`w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ease-in-out ${isOpen ? 'opacity-0 scale-0' : ''
-                            }`}
-                    ></span>
-                    <span
-                        className={`w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ease-in-out ${isOpen ? '-rotate-45 -translate-y-2' : ''
-                            }`}
-                    ></span>
+                    <span className={`w-full h-[2px] bg-primary transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`}></span>
+                    <span className={`w-full h-[2px] bg-primary transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`w-full h-[2px] bg-primary transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`}></span>
                 </button>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Overlay */}
             <div
-                className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                className={`fixed top-[80px] left-0 w-full h-[calc(100vh-80px)] bg-bg z-40 flex flex-col justify-center items-center transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-full'
                     }`}
             >
-                <nav className="container mx-auto px-7 py-4 flex flex-col gap-4 bg-white/95 backdrop-blur-md border-t border-gray-100">
-                    {user && (
-                        <div className="text-primary font-semibold py-2 border-b border-gray-200">
-                            👤 Welcome, {user.name}
-                        </div>
-                    )}
-
-                    <Link
-                        to="/"
-                        onClick={closeMenu}
-                        className="text-secondary hover:text-primary font-semibold transition-all hover:translate-x-2 duration-200 py-2"
-                    >
-                        🏠 Home
-                    </Link>
-                    <Link
-                        to="/cart"
-                        onClick={closeMenu}
-                        className="text-secondary hover:text-primary font-semibold transition-all hover:translate-x-2 duration-200 py-2"
-                    >
-                        🛒 Cart
-                    </Link>
-                    <Link
-                        to="/wishlist"
-                        onClick={closeMenu}
-                        className="text-secondary hover:text-primary font-semibold transition-all hover:translate-x-2 duration-200 py-2"
-                    >
-                        ❤️ Wishlist
-                    </Link>
-                    <Link
-                        to="/admin"
-                        onClick={closeMenu}
-                        className="text-secondary hover:text-primary font-semibold transition-all hover:translate-x-2 duration-200 py-2"
-                    >
-                        ⚙️ Admin
-                    </Link>
+                <nav className="flex flex-col gap-8 text-center text-3xl font-light tracking-wide text-primary ">
+                    {[
+                        { to: "/", label: "Home" },
+                        { to: "/services", label: "Services" },
+                        { to: "/about", label: "About Us" },
+                        { to: "/gallery", label: "Gallery" },
+                        { to: "/contact", label: "Contact Us" },
+                        { to: "/cart", label: "Cart" }
+                    ].map((link, index) => (
+                        <Link
+                            key={link.to}
+                            to={link.to}
+                            onClick={closeMenu}
+                            className={`hover:text-secondary transition-all duration-500 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                                }`}
+                            style={{ transitionDelay: `${index * 100}ms` }}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
 
                     {user ? (
                         <button
                             onClick={handleLogout}
-                            className="px-5 py-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition-all shadow-md text-center"
+                            className={`text-xl text-red-500 hover:text-red-600 transition-all duration-500 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                                }`}
+                            style={{ transitionDelay: '600ms' }}
                         >
-                            Logout
+                            Logout ({user.name})
                         </button>
                     ) : (
                         <Link
                             to="/login"
                             onClick={closeMenu}
-                            className="px-5 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-opacity-90 transition-all shadow-md text-center"
+                            className={`text-xl hover:text-secondary transition-all duration-500 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                                }`}
+                            style={{ transitionDelay: '600ms' }}
                         >
                             Login
                         </Link>
@@ -153,3 +123,6 @@ export default function Navbar() {
         </header>
     );
 }
+
+
+
